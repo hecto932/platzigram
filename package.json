@@ -1,0 +1,23 @@
+{
+  "name": "platzigram",
+  "version": "0.1.0",
+  "description": "Comparte tus fotos estudiando en Platzi",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hecto932/platzigram.git"
+  },
+  "keywords": [
+    "platzigram",
+    "javascript"
+  ],
+  "author": "Hector Flores",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hecto932/platzigram/issues"
+  },
+  "homepage": "https://github.com/hecto932/platzigram#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

@@ -2,8 +2,11 @@ var express = require('express');
 
 var app = express();
 
+//Setting the template engine
+app.set('view engine', 'pug');
+
 app.get('/', function(req, res){
-	res.send("Hello world!");
+	res.render('index', { text: "Hello world! "} );
 });
 
 app.listen(3000, function(err){

@@ -5,6 +5,9 @@ var app = express();
 //Setting the template engine
 app.set('view engine', 'pug');
 
+app.use(express.static('public'));
+
+//Some routes!
 app.get('/', function(req, res){
 	res.render('index', { text: "Hello world! "} );
 });

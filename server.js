@@ -9,7 +9,17 @@ app.use(express.static('public'));
 
 //Some routes!
 app.get('/', function(req, res){
-	res.render('index', { text: "Hello world! "} );
+	res.render('index');
+});
+
+//Some routes!
+app.get('/signup', function(req, res){
+	res.render('index');
+});
+
+//Some routes!
+app.get('/signin', function(req, res){
+	res.render('index');
 });
 
 app.listen(3000, function(err){

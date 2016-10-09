@@ -4,11 +4,11 @@ $secondary-color: #125688;
 
 body{
 	background: #fafafa;
-	color: #125688;
+	color: $secondary-color;
 	font-family: 'Montserrat';
 }
 
-#main-container{
+.landing{
 	margin: 30px auto;
 }
 
@@ -29,9 +29,10 @@ body{
 	text-align: center;
 }
 
-.signup-box .platzigram{
+.platzigram{
 	font-family: 'Oleo Script';
 	font-size: 42px;
+	color: $secondary-color !important;
 }
 
 .signup-form{
@@ -56,5 +57,16 @@ body{
 }
 
 .signup-form .btn.btn-signup{
-	background-color: #125688;
+	background-color: $secondary-color;
+}
+
+.header{
+	background-color: white;
+	color: $secondary-color;
+	box-shadow: none;
+	border-bottom: 1px solid #edeeee;
+}
+
+.timeline{
+	padding: 30px 0;
 }

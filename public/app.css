@@ -6395,7 +6395,7 @@ body {
   color: #125688;
   font-family: 'Montserrat'; }
 
-#main-container {
+.landing {
   margin: 30px auto; }
 
 .iphone {
@@ -6412,9 +6412,10 @@ body {
   padding: 10px 0;
   text-align: center; }
 
-.signup-box .platzigram {
+.platzigram {
   font-family: 'Oleo Script';
-  font-size: 42px; }
+  font-size: 42px;
+  color: #125688 !important; }
 
 .signup-form {
   width: 65%;
@@ -6435,3 +6436,12 @@ body {
 
 .signup-form .btn.btn-signup, .signup-form .btn-signup.btn-large {
   background-color: #125688; }
+
+.header {
+  background-color: white;
+  color: #125688;
+  box-shadow: none;
+  border-bottom: 1px solid #edeeee; }
+
+.timeline {
+  padding: 30px 0; }

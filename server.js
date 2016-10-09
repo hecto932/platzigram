@@ -9,17 +9,17 @@ app.use(express.static('public'));
 
 //Some routes!
 app.get('/', function(req, res){
-	res.render('index');
+	res.render('index', { title : 'Platzigram' });
 });
 
 //Some routes!
 app.get('/signup', function(req, res){
-	res.render('index');
+	res.render('index', { title : 'Platzigram - Signup' });
 });
 
 //Some routes!
 app.get('/signin', function(req, res){
-	res.render('index');
+	res.render('index', { title : 'Platzigram - Signin' });
 });
 
 app.listen(3000, function(err){

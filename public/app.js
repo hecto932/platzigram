@@ -2534,10 +2534,73 @@ var title = require('title');
 page('/', function (ctx, next) {
 	title('Platzigram');
 	var main = document.getElementById('main-container');
-	empty(main).appendChild(template);
+	var pictures = [{
+		user: {
+			username: 'hecto932',
+			avatar: 'https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/13932906_10209466870125352_8105519068024466359_n.jpg?oh=7be84bffe8b86f0a3ba67bcaf246c2e9&oe=58A9A0B2'
+		},
+		url: 'office.jpg',
+		likes: 10,
+		liked: true
+	}, {
+		user: {
+			username: 'hecto932',
+			avatar: 'https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/13932906_10209466870125352_8105519068024466359_n.jpg?oh=7be84bffe8b86f0a3ba67bcaf246c2e9&oe=58A9A0B2'
+		},
+		url: 'office.jpg',
+		likes: 2,
+		liked: true
+	}];
+	empty(main).appendChild(template(pictures));
 });
 
-},{"./template":19,"empty-element":3,"page":4,"title":7}],18:[function(require,module,exports){
+},{"./template":18,"empty-element":3,"page":4,"title":7}],18:[function(require,module,exports){
+var yo = require('yo-yo');
+var layout = require('../layout');
+var picture = require("../picture-card");
+
+module.exports = function (pictures) {
+	var el = yo`<div class="container timeline"
+		<div class="row">
+			<div class="col s12 m10 offset-m1 l6 offset-l3">
+				${ pictures.map(pic => {
+		return picture(pic);
+	}) }
+			</div>
+		</div>
+	</div>`;
+
+	return layout(el);
+};
+
+},{"../layout":21,"../picture-card":22,"yo-yo":8}],19:[function(require,module,exports){
+var page = require("page");
+
+require('./homepage/');
+require('./signup');
+require('./signin');
+
+page.start();
+
+},{"./homepage/":17,"./signin":23,"./signup":25,"page":4}],20:[function(require,module,exports){
+var yo = require('yo-yo');
+
+module.exports = function landing(box) {
+	return yo`<div class="container landing">
+			<div class="row">
+				<div class="col s10 push-s1">
+					<div class="row">
+						<div class="col m5 hide-on-small-only">
+							<img src="iphone.png" class="iphone" alt="iphone"/>
+						</div>
+						${ box }
+					</div>
+				</div>
+			</div>
+		</div>`;
+};
+
+},{"yo-yo":8}],21:[function(require,module,exports){
 var yo = require('yo-yo');
 
 module.exports = function layout(content) {
@@ -2567,48 +2630,29 @@ module.exports = function layout(content) {
 	</div>`;
 };
 
-},{"yo-yo":8}],19:[function(require,module,exports){
-var yo = require('yo-yo');
-var layout = require('./layout');
-
-var template = yo`<div class="container timeline"
-	<div class="row">
-		<div class="col s12 m10 offset-m1 l6 offset-l3">
-			content
-		</div>
-	</div>
-</div>`;
-
-module.exports = layout(template);
-
-},{"./layout":18,"yo-yo":8}],20:[function(require,module,exports){
-var page = require("page");
-
-require('./homepage/');
-require('./signup');
-require('./signin');
-
-page.start();
-
-},{"./homepage/":17,"./signin":22,"./signup":24,"page":4}],21:[function(require,module,exports){
+},{"yo-yo":8}],22:[function(require,module,exports){
 var yo = require('yo-yo');
 
-module.exports = function landing(box) {
-	return yo`<div class="container landing">
-			<div class="row">
-				<div class="col s10 push-s1">
-					<div class="row">
-						<div class="col m5 hide-on-small-only">
-							<img src="iphone.png" class="iphone" alt="iphone"/>
-						</div>
-						${ box }
-					</div>
-				</div>
-			</div>
-		</div>`;
+module.exports = function (pic) {
+  return yo`<div class="card">
+    <div class="card-image">
+      <img class="activator" src=${ pic.url }">
+    </div>
+    <div class="card-content">
+      <a href="/user/${ pic.user.username }" class="card-title">
+      	<img src="${ pic.user.avatar }" class="avatar" />
+      	<span class="username">${ pic.user.username }</span>
+      </a>
+      <small class="right time">Hace 1 dia</small>
+      <p>
+		<a href="#" class="left"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+      	<span class="left likes">${ pic.likes } me gusta</span>
+      </p>
+    </div>
+  </div>`;
 };
 
-},{"yo-yo":8}],22:[function(require,module,exports){
+},{"yo-yo":8}],23:[function(require,module,exports){
 var page = require('page');
 var empty = require('empty-element');
 var template = require('./template');
@@ -2620,7 +2664,7 @@ page('/signin', function (ctx, next) {
 	empty(main).appendChild(template);
 });
 
-},{"./template":23,"empty-element":3,"page":4,"title":7}],23:[function(require,module,exports){
+},{"./template":24,"empty-element":3,"page":4,"title":7}],24:[function(require,module,exports){
 var yo = require('yo-yo');
 var landing = require('../landing');
 
@@ -2651,7 +2695,7 @@ var signinForm = yo`<div class="col s12 m7">
 
 module.exports = landing(signinForm);
 
-},{"../landing":21,"yo-yo":8}],24:[function(require,module,exports){
+},{"../landing":20,"yo-yo":8}],25:[function(require,module,exports){
 var page = require('page');
 var empty = require('empty-element');
 var template = require('./template');
@@ -2663,7 +2707,7 @@ page('/signup', function (ctx, next) {
 	empty(main).appendChild(template);
 });
 
-},{"./template":25,"empty-element":3,"page":4,"title":7}],25:[function(require,module,exports){
+},{"./template":26,"empty-element":3,"page":4,"title":7}],26:[function(require,module,exports){
 var yo = require('yo-yo');
 var landing = require('../landing');
 
@@ -2697,4 +2741,4 @@ var signupForm = yo`<div class="col s12 m7">
 
 module.exports = landing(signupForm);
 
-},{"../landing":21,"yo-yo":8}]},{},[20]);
+},{"../landing":20,"yo-yo":8}]},{},[19]);

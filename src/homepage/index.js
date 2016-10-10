@@ -13,8 +13,8 @@ page('/', function(ctx, next){
 				avatar: 'https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/13932906_10209466870125352_8105519068024466359_n.jpg?oh=7be84bffe8b86f0a3ba67bcaf246c2e9&oe=58A9A0B2'
 			},
 			url: 'office.jpg',
-			likes: 10,
-			liked: true,
+			likes: 0,
+			liked: false,
 			createdAt: new Date()
 		},
 		{
@@ -23,7 +23,7 @@ page('/', function(ctx, next){
 				avatar: 'https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/13932906_10209466870125352_8105519068024466359_n.jpg?oh=7be84bffe8b86f0a3ba67bcaf246c2e9&oe=58A9A0B2'
 			},
 			url: 'office.jpg',
-			likes: 2,
+			likes: 1,
 			liked: true,
 			createdAt: new Date().setDate(new Date().getDate() - 10)
 		}

@@ -6,7 +6,7 @@ var header = require('../header');
 var request = require('superagent');
 var axios = require('axios');
 
-page('/', header, loadPicturesFetch, function(ctx, next){
+page('/', header, asyncLoad, function(ctx, next){
 	
 	title('Platzigram');
 
@@ -51,4 +51,16 @@ function loadPicturesFetch(ctx, next){
 		.catch(function(err){
 			console.log(err);
 		})
+}
+
+//EMACS2016
+// npm install --save-dev babel-plugin-syntax-async-functions babel-plugin-transform-regenerator babel-preset-es2015
+async function asyncLoad(ctx, next){
+	try{
+		var pictures = await fetch('/api/pictures').then(res => res.json());
+		ctx.pictures = pictures;
+		next();
+	}catch(err){
+		return console.log(err);
+	}
 }

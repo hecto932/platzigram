@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/hecto932/platzigram#readme",
   "dependencies": {
+    "axios": "^0.15.0",
     "empty-element": "^1.0.0",
     "express": "^4.14.0",
     "intl": "^1.2.5",

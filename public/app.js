@@ -12472,7 +12472,7 @@ var header = require('../header');
 var request = require('superagent');
 var axios = require('axios');
 
-page('/', header, loadPicturesAxios, function (ctx, next) {
+page('/', header, loadPicturesFetch, function (ctx, next) {
 
 	title('Platzigram');
 
@@ -12493,6 +12493,19 @@ function loadPictures(ctx, next) {
 function loadPicturesAxios(ctx, next) {
 	axios.get('/api/pictures').then(function (res) {
 		ctx.pictures = res.data;
+		next();
+	}).catch(function (err) {
+		console.log(err);
+	});
+}
+
+//Browser support
+function loadPicturesFetch(ctx, next) {
+	fetch('/api/pictures').then(function (res) {
+		return res.json();
+	}).then(function (pictures) {
+		//Aqui ya tenemos los datos para manipularlos
+		ctx.pictures = pictures;
 		next();
 	}).catch(function (err) {
 		console.log(err);

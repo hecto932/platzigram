@@ -2,6 +2,7 @@ var yo = require('yo-yo');
 var layout = require('../layout');
 var picture = require("../picture-card");
 var translate = require('../translate').message;
+var superagent = require('superagent');
 
 module.exports = function(pictures){
 	var el = yo`<div class="container timeline">
@@ -18,13 +19,13 @@ module.exports = function(pictures){
       	</div>
     </div>
     <div class="row">
-      <div class="col s12 m10 offset-m1 l6 offset-l3">
-        ${pictures.map(function (pic) {
-          return picture(pic);
-        })}
-      </div>
+      	<div class="col s12 m10 offset-m1 l6 offset-l3">
+        	${pictures.map(function (pic) {
+          		return picture(pic);
+        	})}
+      	</div>
     </div>
-  </div>`;
+</div>`;
 
 	function toggleButtons() {
     	document.getElementById('fileName').classList.toggle('hide');
@@ -39,6 +40,21 @@ module.exports = function(pictures){
 
   	function onchange() {
     	toggleButtons();
+  	}
+
+  	//This es el objeto Form y ev es el evento que dispara el submit
+  	function onsubmit(ev){
+  		ev.preventDefault();
+
+  		var data = new FormData(this);
+  		superagent
+  			.post('/api/pictures')
+  			.send(data)
+  			.end(function(err, res){
+  				console.log(arguments);
+  				//En todas las funciones tenemos la variable arguments
+  				//EL cual es un array con todos los parametros que recibe.
+  			});
   	}
 
 	return layout(el);

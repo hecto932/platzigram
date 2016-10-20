@@ -1,6 +1,7 @@
 $secondary-color: #125688;
 
 @import "node_modules/materialize-css/sass/materialize.scss";
+@import "./loader";
 
 body{
 	background: #fafafa;
@@ -144,3 +145,5 @@ $avatar-size: 48px;
 		}
 	}
 }
+
+

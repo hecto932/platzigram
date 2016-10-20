@@ -6,13 +6,20 @@ var header = require('../header');
 var request = require('superagent');
 var axios = require('axios');
 
-page('/', header, asyncLoad, function(ctx, next){
+page('/', header, loading, asyncLoad, function(ctx, next){
 	
 	title('Platzigram');
 
 	var main = document.getElementById('main-container');
 	empty(main).appendChild(template(ctx.pictures));
 });
+
+function loading(ctx, next){
+	var el = document.createElement('div');
+	el.classList.add('loader');
+	document.getElementById('main-container').appendChild(el);
+	next();
+}
 
 //ctx nos permite guardar datos mediante los middlewares
 function loadPictures(ctx, next){

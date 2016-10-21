@@ -13,147 +13,167 @@ $platzigram-red: #f44336;
   #{$property}: #{$value};
 }
 
-body{
-	background: #fafafa;
-	color: $secondary-color;
-	font-family: 'Montserrat';
+body {
+  background: #fafafa;
+  color: $secondary-color;
+  font-family: Montserrat;
 }
 
-.landing{
-	margin: 30px auto;
+.btn.btn-flat {
+  background-color: transparent;
+  box-shadow: none;
 }
 
-.iphone{
-	max-width: 100%;
+.landing {
+  margin: 30px auto;
 }
 
-.site-footer{
-	text-transform: uppercase;
-	font-size: 12px;
+.iphone {
+  max-width: 100%;
 }
 
-.login-box, .signup-box{
-	background-color: white;
-	border: 1px solid #edeeee; 
-	border-radius: 3px;
-	padding: 10px 0;
-	text-align: center;
+.site-footer {
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
-.platzigram{
-	font-family: 'Oleo Script';
-	font-size: 42px;
-	color: $secondary-color !important;
+.loader-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.signup-form{
-	width: 65%;
-	margin: 0 auto;
-	color: #a5a7aa;
-	font-size: 1.2em;
+.login-box,
+.signup-box {
+  background-color: white;
+  border: 1px solid #edeeee;
+  border-radius: 3px;
+  padding: 10px 0;
+  text-align: center;
 }
 
-.signup-form h2{
-	color: #a5a7aa;
-	font-size: 1.2em;
+.platzigram {
+  font-family: 'Oleo Script';
+  font-size: 42px;
+  color: $secondary-color !important;
 }
 
-.signup-form .btn.btn-fb{
-	background-color: #4090db;
-	font-size: .8em;
+.signup-form {
+  width: 65%;
+  margin: 0 auto;
 }
 
-.signup-form .btn.btn-fb:hover{
-	background-color: #2d6599;
+.signup-form h2 {
+  color: #a5a7aa;
+  font-size: 1.2em;
 }
 
-.signup-form .btn.btn-signup{
-	background-color: $secondary-color;
+.signup-form .btn.btn-fb {
+  background-color: #4090db;
+  font-size: .8em;
 }
 
-.header{
-	background-color: white;
-	color: $secondary-color;
-	box-shadow: none;
-	border-bottom: 1px solid #edeeee;
+.signup-form .btn.btn-fb:hover {
+  background-color: #2d6599;
 }
 
-.timeline{
-	padding: 30px 0;
+.signup-form .btn.btn-signup {
+  background-color: $secondary-color;
+}
+
+.header {
+  background-color: white;
+  color: $secondary-color;
+  box-shadow: none;
+  border-bottom: 1px solid #edeeee;
+}
+
+.timeline {
+  padding: 30px 0;
 }
 
 $avatar-size: 48px;
+$avatar-size-big: 150px;
 
-.avatar{
-	max-width: $avatar-size;
-	border-radius: 50%;
-	float: left;
-	margin-right: 12px;
+.avatar {
+  width: $avatar-size;
+  height: $avatar-size;
+  border-radius: 50%;
+  float: left;
+  margin-right: 12px;
 }
 
-.card small.time{
-	line-height: $avatar-size;
+.card .username {
+  color: $secondary-color;
 }
 
-.card p{
-	padding: 20px 0;
+.card small.time {
+  line-height: $avatar-size;
 }
 
-.card .likes{
-	line-height: 30px;
-	margin-left: 12px;
+.card p {
+  padding: 20px 0;
 }
 
-.card i {
-	font-size: 30px;
+.card .likes {
+  line-height: 30px;
+  margin-left: 12px;
 }
 
-.card .fa-heart-o{
-	color: $secondary-color;
+.card .heart,
+.card .heart-o, {
+  font-size: 30px;
 }
 
-.card .username{
-	color: $secondary-color;
+.fa-heart-o {
+  color: $secondary-color;
 }
 
-.card .fa-heart{
-	color: #f44336;
-	display: none;
+.fa-heart {
+  color: $platzigram-red;
 }
 
-.card.liked{
-	.fa-heart{
-		display: block;
-	}
-
-	.fa-heart-o{
-		display: none;
-	}
+.heart {
+  display: none;
 }
 
-.form-upload{
-	span, button{
-		color: white;
-	}
+.card.liked {
+  .heart {
+    display: block;
+  }
 
-	.fileUpload{
-		position:relative;
-		overflow: hidden;
-		margin: 10px;
+  .heart-o {
+    display: none;
+  }
+}
 
-		input {
-			position: absolute;
-			top:0;
-			right: 0;
-			margin: 0;
-			padding: 0;
-			bottom: 0;
-			font-size: 20px;
-			cursor: pointer;
-			opacity: 0;
-			filter: alpha(opacity=0);
-		}
-	}
+.form-upload {
+
+  span, button {
+    color: white;
+  }
+
+  .fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+
+
+    input {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+    }
+
+  }
 }
 
 .user-page {
@@ -210,3 +230,32 @@ $avatar-size: 48px;
   }
 }
 
+.modal {
+  img {
+    max-height: 100%;
+    max-width: 90%;
+  }
+
+  .fa-heart {
+    display: inline-block;
+  }
+}
+
+.like-heart {
+  font-size: 10em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  transition: all .1s ease;
+  opacity: 0;
+}
+
+.like-heart.liked {
+  color: $platzigram-red;
+  font-size: 12em;
+  display: block;
+  transition: all .5s ease;
+  opacity: 1;
+}

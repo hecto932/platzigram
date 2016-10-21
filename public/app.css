@@ -6452,7 +6452,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 body {
   background: #fafafa;
   color: #125688;
-  font-family: 'Montserrat'; }
+  font-family: Montserrat; }
+
+.btn.btn-flat, .btn-flat.btn-large {
+  background-color: transparent;
+  box-shadow: none; }
 
 .landing {
   margin: 30px auto; }
@@ -6464,7 +6468,14 @@ body {
   text-transform: uppercase;
   font-size: 12px; }
 
-.login-box, .signup-box {
+.loader-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.login-box,
+.signup-box {
   background-color: white;
   border: 1px solid #edeeee;
   border-radius: 3px;
@@ -6478,9 +6489,7 @@ body {
 
 .signup-form {
   width: 65%;
-  margin: 0 auto;
-  color: #a5a7aa;
-  font-size: 1.2em; }
+  margin: 0 auto; }
 
 .signup-form h2 {
   color: #a5a7aa;
@@ -6506,10 +6515,14 @@ body {
   padding: 30px 0; }
 
 .avatar {
-  max-width: 48px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   float: left;
   margin-right: 12px; }
+
+.card .username {
+  color: #125688; }
 
 .card small.time {
   line-height: 48px; }
@@ -6521,23 +6534,23 @@ body {
   line-height: 30px;
   margin-left: 12px; }
 
-.card i {
+.card .heart,
+.card .heart-o {
   font-size: 30px; }
 
-.card .fa-heart-o {
+.fa-heart-o {
   color: #125688; }
 
-.card .username {
-  color: #125688; }
+.fa-heart {
+  color: #f44336; }
 
-.card .fa-heart {
-  color: #f44336;
+.heart {
   display: none; }
 
-.card.liked .fa-heart {
+.card.liked .heart {
   display: block; }
 
-.card.liked .fa-heart-o {
+.card.liked .heart-o {
   display: none; }
 
 .form-upload span, .form-upload button {
@@ -6551,9 +6564,9 @@ body {
     position: absolute;
     top: 0;
     right: 0;
+    bottom: 0;
     margin: 0;
     padding: 0;
-    bottom: 0;
     font-size: 20px;
     cursor: pointer;
     opacity: 0;
@@ -6599,3 +6612,27 @@ body {
     .user-page .picture-container .fa-heart {
       margin-right: 8px;
       display: inline-block; }
+
+.modal img {
+  max-height: 100%;
+  max-width: 90%; }
+
+.modal .fa-heart {
+  display: inline-block; }
+
+.like-heart {
+  font-size: 10em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  transition: all .1s ease;
+  opacity: 0; }
+
+.like-heart.liked {
+  color: #f44336;
+  font-size: 12em;
+  display: block;
+  transition: all .5s ease;
+  opacity: 1; }

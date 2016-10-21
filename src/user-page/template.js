@@ -1,6 +1,6 @@
 import yo from 'yo-yo';
 import layout from '../layout';
-import translate from '../translate';
+var translate = require('../translate').message;
 
 export default function userPageTemplate(user){
 	var el = yo`<div class="container user-page">
@@ -23,6 +23,14 @@ export default function userPageTemplate(user){
                           <img src="${picture.src})" class="picture" />
                           <div class="likes"><i class="fa fa-heart"></i> ${picture.likes}</div>
                         </a>
+                        <div id="modal${picture.id}" class="modal modal-fixed-footer">
+                        <div class="modal-content center">
+                          <img src="${picture.src})" />
+                        </div>
+                        <div class="modal-footer">
+                          <div class="btn btn-flat likes"><i class="fa fa-heart"></i> ${translate('likes', { likes: picture.likes })}</div>
+                        </div>
+                      </div>
                       </div>`;
                     })}
                   </div>

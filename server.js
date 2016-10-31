@@ -44,7 +44,7 @@ app.get('/api/pictures', function(req, res){
 				avatar: 'https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/13932906_10209466870125352_8105519068024466359_n.jpg?oh=7be84bffe8b86f0a3ba67bcaf246c2e9&oe=58A9A0B2'
 			},
 			url: 'office.jpg',
-			likes: 0,
+			likes: 5,
 			liked: false,
 			createdAt: new Date().getTime()
 		},

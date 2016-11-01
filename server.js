@@ -1,15 +1,43 @@
+'use strict';
+
 var express = require('express');
 var multer  = require('multer');
 var ext = require('file-extension');
+var aws = require('aws-sdk');
+var multerS3 = require('multer-s3');
 
-var storage = multer.diskStorage({
+var config = require('./config');
+
+//Storage multerS3
+
+console.log(config.aws);
+
+var s3 = new aws.S3({
+  accessKeyId: config.aws.accessKey,
+  secretAccessKey: config.aws.secretKey
+});
+
+var storage = multerS3({
+  s3: s3,
+  bucket: 'platzigram-hector',
+  acl: 'public-read',
+  metadata: function (req, file, cb) {
+    cb(null, { fieldName: file.fieldname })
+  },
+  key: function (req, file, cb) {
+    cb(null, +Date.now() + '.' + ext(file.originalname))
+  }
+});
+
+//Storage Local
+/*var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './uploads')
   },
   filename: function (req, file, cb) {
     cb(null, +Date.now() + '.' + ext(file.originalname))
   }
-})
+})*/
  
 var upload = multer({ storage: storage }).single('picture');
 
@@ -44,7 +72,7 @@ app.get('/api/pictures', function(req, res){
 				avatar: 'https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/13932906_10209466870125352_8105519068024466359_n.jpg?oh=7be84bffe8b86f0a3ba67bcaf246c2e9&oe=58A9A0B2'
 			},
 			url: 'office.jpg',
-			likes: 5,
+			likes: 0,
 			liked: false,
 			createdAt: new Date().getTime()
 		},
@@ -54,7 +82,7 @@ app.get('/api/pictures', function(req, res){
 				avatar: 'https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/13932906_10209466870125352_8105519068024466359_n.jpg?oh=7be84bffe8b86f0a3ba67bcaf246c2e9&oe=58A9A0B2'
 			},
 			url: 'office.jpg',
-			likes: 1,
+			likes: 0,
 			liked: true,
 			createdAt: new Date().setDate(new Date().getDate() - 10)
 		}

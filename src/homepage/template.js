@@ -56,3 +56,4 @@ module.exports = function (pictures) {
 
   return layout(el);
 }
+

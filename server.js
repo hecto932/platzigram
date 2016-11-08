@@ -1,12 +1,16 @@
 'use strict';
 
 var express = require('express');
-var multer  = require('multer');
-var ext = require('file-extension');
 var aws = require('aws-sdk');
+var multer  = require('multer');
 var multerS3 = require('multer-s3');
-
+var ext = require('file-extension');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var expressSession = require('express-session');
+var passport = require('passport');
 var config = require('./config');
+var port = process.env.PORT || 3000;
 
 //Storage multerS3
 
@@ -28,20 +32,21 @@ var storage = multerS3({
     cb(null, +Date.now() + '.' + ext(file.originalname))
   }
 });
-
-//Storage Local
-/*var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, +Date.now() + '.' + ext(file.originalname))
-  }
-})*/
  
 var upload = multer({ storage: storage }).single('picture');
 
 var app = express();
+
+app.set(bodyParser.json()) // Cualquier peticion con el JSON llega al body serializado
+app.use(bodyParser.urlencoded({ extended: false })) // Recibe los parametros de un request de un formulario
+app.use(cookieParser());
+app.use(expressSession({
+  secret: config.secret,
+  resave: false,
+  saveUnitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Setting the template engine
 app.set('view engine', 'pug');
@@ -149,7 +154,7 @@ app.get('/:username/:id', function (req, res) {
   res.render('index', { title: `Platzigram - ${req.params.username}` });
 })
 
-app.listen(3000, function(err){
+app.listen(port, function(err){
 	if(err) return console.log("Hubo un error"), process.exit(1);
-	console.log("Escuchando en el puerto 3000");
+	console.log(`Escuchando en el puerto ${port}`);
 });

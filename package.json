@@ -12,8 +12,11 @@
   "author": "platzi",
   "dependencies": {
     "axios": "^0.11.0",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "empty-element": "^1.0.0",
     "express": "^4.13.4",
+    "express-session": "^1.14.2",
     "file-extension": "^2.0.1",
     "intl": "^1.1.0",
     "intl-messageformat": "^1.3.0",
@@ -21,6 +24,9 @@
     "materialize-css": "^0.97.6",
     "multer": "^1.1.0",
     "page": "^1.7.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
     "pug": "^2.0.0-alpha6",
     "superagent": "^1.8.3",
     "title": "^1.0.0",
@@ -42,5 +48,6 @@
   "scripts": {
     "build": "gulp",
     "start": "gulp watch & node server.js"
-  }
+  },
+  "license": "MIT"
 }

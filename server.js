@@ -1,5 +1,3 @@
-'use strict';
-
 var express = require('express');
 var aws = require('aws-sdk');
 var multer  = require('multer');
@@ -9,12 +7,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var passport = require('passport');
+var platzigram = require('platzigram-client');
 var config = require('./config');
 var port = process.env.PORT || 3000;
 
-//Storage multerS3
-
-console.log(config.aws);
+var client = platzigram.createClient(config.client);
 
 var s3 = new aws.S3({
   accessKeyId: config.aws.accessKey,
@@ -61,6 +58,15 @@ app.get('/', function(req, res){
 //Some routes!
 app.get('/signup', function(req, res){
 	res.render('index', { title : 'Platzigram - Signup' });
+});
+
+app.post('/signup', function(req, res){
+  var user = req.body;
+  client.saveUser(user, function(err, user) {
+    if(err) return res.status(500).send(err.message);
+
+    res.redirect('/signin');
+  })
 });
 
 app.get('/signin', function(req, res){

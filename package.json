@@ -29,7 +29,7 @@
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
-    "platzigram-client": "hecto932/platzigram-client",
+    "platzigram-client": "file:../platzigram-client",
     "pug": "^2.0.0-alpha6",
     "superagent": "^1.8.3",
     "title": "^1.0.0",

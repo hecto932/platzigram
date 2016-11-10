@@ -6,9 +6,7 @@ var client = platzigram.createClient(config.client);
 
 exports.localStrategy = new LocalStrategy((username, password, done) => {
   client.auth(username, password, (err, token) => {
-    console.log(username + " " + password);
     if (err) {
-      console.log("Username and password not found!");
       console.log(err.message);
       return done(null, false, { message: 'username and password not found' })
     }

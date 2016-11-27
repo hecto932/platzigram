@@ -10,13 +10,15 @@ exports.localStrategy = new LocalStrategy((username, password, done) => {
       console.log(err.message);
       return done(null, false, { message: 'username and password not found' })
     }
-
+    console.log('NO HAY ERROR!');
     client.getUser(username, (err, user) => {
       if (err) {
+        console.log(err.message);
         return done(null, false, { message: `an error ocurred: ${err.message}` })
       }
 
       user.token = token
+      console.log(user);
       return done(null, user)
     })
   })
@@ -31,7 +33,12 @@ exports.serializeUser = function (user, done) {
 
 exports.deserializeUser = function (user, done) {
   client.getUser(user.username, (err, usr) => {
-    if (err) return done(err)
+    if (err) {
+      console.log('ERROR!!');
+      console.log(err.message);
+      console.log('ERROR!!');
+      return done(err)
+    }
 
     usr.token = user.token
     done(null, usr)

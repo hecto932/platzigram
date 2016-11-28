@@ -22,6 +22,7 @@
     "intl": "^1.1.0",
     "intl-messageformat": "^1.3.0",
     "intl-relativeformat": "^1.3.0",
+    "jsonwebtoken": "^7.1.9",
     "materialize-css": "^0.97.6",
     "multer": "^1.1.0",
     "multer-s3": "^2.4.0",

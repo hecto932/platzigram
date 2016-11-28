@@ -18,7 +18,7 @@ const config = {
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
       callbackURL: 'http://platzigram.com/auth/facebook/callback'
     }
-  }
+  },
   secret: process.env.PLATZIGRAM_SECRET || 'pl4tzi' // never use default
 }
 

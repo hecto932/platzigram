@@ -1,7 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var platzigram = require('platzigram-client')
-var config = require('../config')
+var jwt = require('jsonwebtoken');
+var config = require('../config');
 
 var client = platzigram.createClient(config.client);
 
@@ -36,7 +37,15 @@ exports.facebookStrategy = new FacebookStrategy({
   }
 
   findOrCreate(userProfile, (err, user) => {
-    return done(null, user);
+    if(err) return done(err)
+
+    jwt.sign({ userId: user.username}, config.secret, {}, (e, token) => {
+      if(e) return done(e)
+
+      user.token = token
+
+      return done(null, user);
+    })
   })
 
   function findOrCreate(user, callback){

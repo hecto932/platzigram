@@ -11,7 +11,7 @@ var platzigram = require('platzigram-client');
 var auth = require('./auth');
 
 var config = require('./config');
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5050;
 
 var client = platzigram.createClient(config.client);
 
@@ -50,6 +50,7 @@ app.set('view engine', 'pug');
 app.use(express.static('public'));
 
 passport.use(auth.localStrategy);
+passport.use(auth.facebookStrategy);
 passport.deserializeUser(auth.deserializeUser);
 passport.serializeUser(auth.serializeUser);
 
@@ -80,6 +81,13 @@ app.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/signin'
 }));
+
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email'} ));
+
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/',
+  failureRedirect: '/signin'
+}))
 
 function ensureAuth (req, res, next) {
   if (req.isAuthenticated()) {

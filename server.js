@@ -83,6 +83,7 @@ app.post('/login', passport.authenticate('local', {
 
 function ensureAuth (req, res, next) {
   if (req.isAuthenticated()) {
+    console.log("authenticated!!!!!!!!!");
     return next();
   }
 

@@ -32,7 +32,7 @@ exports.facebookStrategy = new FacebookStrategy({
   var userProfile = {
     username: profile._json.id,
     name: profile._json.name,
-    emai: profile._json.email,
+    email: profile._json.email,
     facebook: true
   }
 

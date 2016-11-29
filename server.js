@@ -113,39 +113,38 @@ app.get('/whoami', function(req, res) {
 
 //Midlewares
 app.get('/api/pictures', function(req, res){
+  client.listPictures(function (err, pictures) {
+    if(err) return res.send([]);
 
-	var pictures = [
-		{
-			user: {
-				username: 'hecto932',
-				avatar: 'https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/13932906_10209466870125352_8105519068024466359_n.jpg?oh=7be84bffe8b86f0a3ba67bcaf246c2e9&oe=58A9A0B2'
-			},
-			url: 'office.jpg',
-			likes: 0,
-			liked: false,
-			createdAt: new Date().getTime()
-		},
-		{
-			user: {
-				username: 'hecto932',
-				avatar: 'https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/13932906_10209466870125352_8105519068024466359_n.jpg?oh=7be84bffe8b86f0a3ba67bcaf246c2e9&oe=58A9A0B2'
-			},
-			url: 'office.jpg',
-			likes: 0,
-			liked: true,
-			createdAt: new Date().setDate(new Date().getDate() - 10)
-		}
-	];
-
-	setTimeout(() => res.send(pictures) , 2000);
+    res.send(pictures);
+  })
 });
 
 app.post('/api/pictures', ensureAuth, function (req, res) {
   	upload(req, res, function (err) {
     	if (err) {
-      		return res.send(500, "Error uploading file");
+      		return res.status(500).send(`Error uploading file: ${err.message}`);
     	}
-    	res.send('File uploaded');
+      console.log("-------------");
+      console.log(req.user);
+      console.log("-------------");
+      var user = req.user;
+      var token = req.user.token;
+      var username = req.user.username;
+      var src = req.file.location;
+
+      client.savePicture({
+        src: src,
+        userId: username,
+        user: {
+          username: username,
+          avatar: user.avatar,
+          name: user.name
+        }
+      }, token, function (err, img){
+        if (err) return res.status(500).send(err.message);
+        res.send(`File uploaded: ${req.file.location}`);
+      })
   	})
 })
 

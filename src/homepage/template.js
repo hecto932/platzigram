@@ -51,6 +51,8 @@ module.exports = function (pictures) {
       .send(data)
       .end(function (err, res) {
         console.log(arguments);
+        console.log(err);
+        console.log(res);
       })
   }
 

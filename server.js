@@ -125,9 +125,6 @@ app.post('/api/pictures', ensureAuth, function (req, res) {
     	if (err) {
       		return res.status(500).send(`Error uploading file: ${err.message}`);
     	}
-      console.log("-------------");
-      console.log(req.user);
-      console.log("-------------");
       var user = req.user;
       var token = req.user.token;
       var username = req.user.username;

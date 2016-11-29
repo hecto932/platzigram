@@ -32,6 +32,7 @@
     "passport-local": "^1.0.0",
     "platzigram-client": "file:../platzigram-client",
     "pug": "^2.0.0-alpha6",
+    "socket.io-client": "^1.7.1",
     "superagent": "^1.8.3",
     "title": "^1.0.0",
     "yo-yo": "^1.2.0"
